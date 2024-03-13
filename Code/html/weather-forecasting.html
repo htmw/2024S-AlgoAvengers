@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!-- //custom-theme -->
+<link href= 'css/style.css'  rel="stylesheet" type="text/css" media="all" />
+<link href= 'css/bootstrap.css'  rel="stylesheet" type="text/css" media="all" />
+<!-- js -->
+<script type="text/javascript" src= 'js/jquery-2.1.4.min.js' ></script>
+<!-- //js -->
+<link href= 'css/mislider.css'  rel="stylesheet" type="text/css" />
+<link href= 'css/mislider-custom.css'  rel="stylesheet" type="text/css" />
+<!-- font-awesome-icons -->
+<link href= 'css/font-awesome.css'  rel="stylesheet"> 
+<!-- //font-awesome-icons -->
+<link href="http://fonts.googleapis.com/css?family=Bree+Serif&amp;subset=latin-ext" rel="stylesheet">
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+
+
+
+<!-- about -->
+<div class="welcome">
+	<div class="container">
+		<!-- <h3 class="agileits_w3layouts_head">Why <span>Choose</span> Us</h3> -->
+		
+		<div class="w3ls_news_grids"> 
+            <div class="agileits_mail_grid_right1 agile_mail_grid_right1">
+                <form method="post">
+                    {% csrf_token %}
+                    <span>
+                        <i>Select Area</i>
+                        <!-- <input type="text" name="Name" placeholder=" " required=""> -->
+                        <select class="form-control" name="area">
+                            {% for area in areas %}
+                                <option value="{{area.id}}">{{area.name}}</option>
+                            {% endfor %}
+                        </select>
+                    </span>
+                    <br/>
+                    
+                    <div class="w3_submit">
+                        <input type="submit" value="Submit Now">
+                    </div>
+                </form>
+                {% if weather_details %}
+                    <br/><br/>
+                    <div id="welcome_bottom" class="welcome-bottom">
+                        <div class="col-md-12 wthree_welcome_bottom_left">
+                            <h3><span>{{city}}</span></h3>
+                            <p><b>Maximum Temprature : </b> {{weather_details.temp_max}}</p>
+                            <p><b>Temprature : </b> {{weather_details.temp}}</p>
+                            <p><b>Minimum Temprature : </b> {{weather_details.temp_min}}</p>
+                            <p><b>Humidity : </b> {{weather_details.humidity}}</p>
+                            <p><b>Pressure : </b> {{weather_details.pressure}}</p>
+                            <!-- <!-- <p><b>Temprature : </b> {{weather_details.temp}}</p> -->
+                            <p><b>Weather Report : </b> {{weather_details.weather_report}}</p> 
+                            <div class="clearfix"> </div>
+                        </div>
+                        <div class="col-md-6 wthree_welcome_bottom_right">
+                            <div class="agileinfo_grid">
+                                <figure class="agileits_effect_moses">
+                                    <!-- <img src="{{detail.soil.image.url}}" alt=" " class="img-responsive" /> -->
+                                    <!-- <figcaption>
+                                        <h4>Plantation <span>For Future Growth</span></h4>
+                                        <p>Nullam in luctus lectus. Mauris lobortis dui mauris, non vestibulum 
+                                            magna blandit at scelerisque tellus ipsum nec ipsum.</p>
+                                    </figcaption>			 -->
+                                </figure>
+                            </div>
+                        </div>
+                        <div class="clearfix"> </div>
+                    </div>
+                {% endif %}
+
+
+
+            </div>
+		</div>
+	</div>
+</div>
+
+{% endblock %} 
