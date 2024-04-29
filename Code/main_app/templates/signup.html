@@ -1,0 +1,91 @@
+{% load static %}
+
+<style>
+    /* Style the form container */
+    .form-container {
+        max-width: 400px;
+        margin: auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        text-align: left;
+    }
+
+    /* Style form elements */
+    form {
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* Center form elements horizontally */
+    }
+
+    label {
+        margin-bottom: 8px;
+        text-align: left; /* Align labels to the left */
+    }
+
+    input[type="text"],
+    input[type="password"] {
+        padding: 10px;
+        margin-bottom: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        width: calc(100% - 20px);
+        max-width: 280px;
+        box-sizing: border-box;
+    }
+
+    button {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        background-color: #4caf50;
+        color: white;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+        background-color: #45a049;
+    }
+
+    .login-link {
+        margin-top: 10px;
+        text-align: center;
+    }
+
+    .login-link a {
+        color: #4caf50;
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+
+    .login-link a:hover {
+        color: #45a049;
+    }
+
+    .logo {
+        max-width: 100px;
+        margin-bottom: 20px;
+    }
+
+    h2 {
+        color: #333;
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+</style>
+
+
+<div class="form-container" >
+    <h2 style="text-align: center;">Register</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Register</button>
+    </form>
+    <div class="login-link">
+        <p>Already a user? <a href="/login">Login here</a></p>
+    </div>
+</div>
