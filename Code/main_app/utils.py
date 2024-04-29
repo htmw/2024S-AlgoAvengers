@@ -3,19 +3,79 @@ import requests
 import numpy as np
 import os,cv2
 import pandas as pd
-
+import torch.nn as nn
 from PIL import Image
-
+import torchvision.transforms.functional as TF
 import numpy as np
-
+import torch
 import pandas as pd
 import os
 import requests, json
+class CNN(nn.Module):
+    def __init__(self, K):
+        super(CNN, self).__init__()
+        self.conv_layers = nn.Sequential(
+            # conv1
+            nn.Conv2d(in_channels=3, out_channels=32,
+                      kernel_size=3, padding=1),
+            nn.ReLU(),
+            nn.BatchNorm2d(32),
+            nn.Conv2d(in_channels=32, out_channels=32,
+                      kernel_size=3, padding=1),
+            nn.ReLU(),
+            nn.BatchNorm2d(32),
+            nn.MaxPool2d(2),
+            # conv2
+            nn.Conv2d(in_channels=32, out_channels=64,
+                      kernel_size=3, padding=1),
+            nn.ReLU(),
+            nn.BatchNorm2d(64),
+            nn.Conv2d(in_channels=64, out_channels=64,
+                      kernel_size=3, padding=1),
+            nn.ReLU(),
+            nn.BatchNorm2d(64),
+            nn.MaxPool2d(2),
+            # conv3
+            nn.Conv2d(in_channels=64, out_channels=128,
+                      kernel_size=3, padding=1),
+            nn.ReLU(),
+            nn.BatchNorm2d(128),
+            nn.Conv2d(in_channels=128, out_channels=128,
+                      kernel_size=3, padding=1),
+            nn.ReLU(),
+            nn.BatchNorm2d(128),
+            nn.MaxPool2d(2),
+            # conv4
+            nn.Conv2d(in_channels=128, out_channels=256,
+                      kernel_size=3, padding=1),
+            nn.ReLU(),
+            nn.BatchNorm2d(256),
+            nn.Conv2d(in_channels=256, out_channels=256,
+                      kernel_size=3, padding=1),
+            nn.ReLU(),
+            nn.BatchNorm2d(256),
+            nn.MaxPool2d(2),
+        )
 
-import keras
-from keras.models import load_model
-from tensorflow.keras.utils import load_img, img_to_array 
-import tensorflow_addons as tfa
+        self.dense_layers = nn.Sequential(
+            nn.Dropout(0.4),
+            nn.Linear(50176, 1024),
+            nn.ReLU(),
+            nn.Dropout(0.4),
+            nn.Linear(1024, K),
+        )
+
+    def forward(self, X):
+        out = self.conv_layers(X)
+
+        # Flatten
+        out = out.view(-1, 50176)
+
+        # Fully connected
+        out = self.dense_layers(out)
+
+        return out
+
 
 idx_to_classes = {0: 'Apple___Apple_scab',
                   1: 'Apple___Black_rot',
@@ -59,9 +119,44 @@ idx_to_classes = {0: 'Apple___Apple_scab',
 
 disease_info = pd.read_csv(r'disease_info.csv' , encoding='cp1252')
 supplement_info = pd.read_csv(r'supplement_info.csv',encoding='cp1252')
-model = load_model("./model/",custom_objects={'KerasLayer':tfa.activations.gelu})
+model = CNN(39)    
+model.load_state_dict(torch.load(r"plant_disease_model_1.pt"))
+model.eval()
 
 
+def weather(city):
+    BASE_URL = "https://api.openweathermap.org/data/2.5/weather?"
+    CITY = city #"Ahmedabad"
+
+    URL = BASE_URL + "q=" + CITY + "&appid=" + "2e46c08796ce01d9788055302c9ad485"
+
+    response = requests.get(URL)
+
+    if response.status_code == 200:
+
+        data = response.json()
+
+        main = data['main']
+        main['temp'] = round(main['temp']-273.15)
+        main['temp_max'] = main['temp_max']-273.15
+        main['temp_min'] = main['temp_min']-273.15
+        temperature = main['temp']
+        # getting the humidity
+        humidity = main['humidity']
+        # getting the pressure
+        pressure = main['pressure']
+        # weather report
+        report = data['weather']
+        main['weather_report'] = report[0]['description']
+        print(f"{CITY:-^30}")
+        print(f"Temperature: {temperature}")
+        print(f"Humidity: {humidity}")
+        print(f"Pressure: {pressure}")
+        print(f"Weather Report: {report[0]['description']}")
+        return main
+    else:
+        # showing the error message
+        print("Error in the HTTP request")
 
 def load_image(img_path, show=False):
     img = cv2.imread(img_path)
@@ -71,13 +166,13 @@ def load_image(img_path, show=False):
 
 
 def predict(image_path): 
-    i = load_img(image_path, target_size=(224,224))
-    i = img_to_array(i)
-    i = i.reshape(1, 224,224,3)
-
-    out = model.predict(i)[0]
-    pred = out.argmax()
-    pr = out[pred]*100
+    image = Image.open(image_path)
+    image = image.resize((224, 224))
+    input_data = TF.to_tensor(image)
+    input_data = input_data.view((-1, 3, 224, 224))
+    output = model(input_data)
+    output = output.detach().numpy()
+    pred = np.argmax(output)
     title = disease_info['disease_name'][pred]
     if pred>=75:
         title+=" (Stage III)"
@@ -94,4 +189,21 @@ def predict(image_path):
     supplement_buy_link = supplement_info['buy link'][pred]
     return title,description,symptoms,prevent,supplement_name
 
-print(predict("leaf.jpg"))
+
+url = 'https://newsapi.org/v2/everything?'
+api_key = 'ad339c3d21e94330b4287fec00bdf4bc'
+
+def get_news():
+    param_headlines = {
+        'q':'farming',
+        'language':"en",
+        'page_size':3,
+        'sort_by':"relevancy",
+        'apiKey':api_key
+    }
+
+    response_headline = requests.get(url, params = param_headlines)
+    response_json_headline = response_headline.json()
+
+    responses = response_json_headline["articles"] 
+    return responses 
