@@ -3,23 +3,26 @@
 
 {% block content %}
 
-
+<link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="css\bootstrap.css">
+<link rel="stylesheet" href="css\flexslider.css">
+<link rel="stylesheet" href="css\font-awesome.css">
+<link rel="stylesheet" href="css\lsb.css">
+<link rel="stylesheet" href="css\mislider-custom.css">
+<link rel="stylesheet" href="css\mislider.css">
 
 <!-- about -->
 <div class="welcome">
 	<div class="container">
 		<h3 class="agileits_w3layouts_head">Why <span>Choose</span> Us</h3>
 		<div class="w3_agile_image">
-			<img src="images/1.png" alt=" " class="img-responsive" />
+			<img src="{% static 'images/1.png' %}"  alt=" " class="img-responsive" />
 		</div>
-		<p class="agile_para">Morbi viverra lacus commodo felis semper, eu iaculis lectus nulla at sapien blandit sollicitudin.</p>
 		<div class="w3ls_news_grids"> 
 			<div class="col-md-6 w3_agile_about_grid_left">
-				<h3>Pellentesque a ligula nec dui ornare pulvinar in non sem condimentum erat</h3>
-				<p><i>In eleifend nisl fermentum bibendum euismod. Pellentesque ac mi quis tortor 
-					consequat scelerisque.</i> Sed eros urna, rhoncus nec tortor quis, pretium vestibulum
-					purus. Nunc quis augue nibh. Proin non enim non nulla scelerisque scelerisque 
-					vitae non est. Quisque iaculis leo at lacus malesuada mattis.</p>
+				<h3>"Eco Scan" is a pioneering project leveraging</h3>
+				<p> Convolutional Neural Networks (CNN) and image processing techniques for rapid and accurate plant disease detection. Using high-resolution images of plants, the system employs advanced CNN algorithms to analyze and identify potential diseases swiftly. The project's primary objective is to provide a user-friendly interface for farmers, allowing them to upload crop images and receive real-time analyses, enabling early disease detection and informed decision-making. By integrating state-of-the-art technology into agriculture, Eco Scan aims to optimize crop health monitoring, minimize losses, and promote sustainable farming practices.
+				</p>
 			</div>
 			<div class="col-md-6 w3_agile_about_grid_right">
 				<div class="skillbar" data-percent="78">
@@ -77,9 +80,7 @@
 	<div class="container">
 		<h3><span>Agriculture</span> not only gives riches to a nation, but the
 			only riches she can call her own</h3>
-		<div class="agileits_w3layouts_learn_more agileits_learn_more hvr-radial-out">
-			<a href="#" data-toggle="modal" data-target="#myModal">Read More</a>
-		</div>
+
 	</div>
 </div>
 <!-- //about-bottom -->
@@ -88,74 +89,98 @@
 	<div class="container">
 		<h3 class="agileits_w3layouts_head">Meet Our <span>Amazing</span> Team</h3>
 		<div class="w3_agile_image">
-			<img src="images/1.png" alt=" " class="img-responsive" />
+			<img src="{% static 'images/1.png' %}" alt=" " class="img-responsive" />
 		</div>
-		<p class="agile_para">Morbi viverra lacus commodo felis semper, eu iaculis lectus nulla at sapien blandit sollicitudin.</p>
-		<div class="w3ls_news_grids w3_agileits_team_grids"> 
+				<div class="w3ls_news_grids w3_agileits_team_grids"> 
 			<div class="col-md-3 w3_agileits_team_grid"> 
 				<div class="w3layouts_news_grid">
-					<img src="images/10.jpg" alt=" " class="img-responsive" />
+					<img src="{% static 'images/Lokesh.jpeg' %}" alt=" " class="img-responsive" />
 					<div class="w3layouts_news_grid_pos">
 						<div class="wthree_text agileinfo_about_text">
-							<ul class="agileits_social_list">
-								<li><a href="#" class="w3_agile_facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-								<li><a href="#" class="agile_twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-								<li><a href="#" class="w3_agile_dribble"><i class="fa fa-dribbble" aria-hidden="true"></i></a></li>
-							</ul>
+
 						</div>
 					</div>
 				</div>
-				<h4>Andria Carl</h4>
-				<p>Field Manager</p>
+				<h4>Lokesh</h4>
 			</div>
 			<div class="col-md-3 w3_agileits_team_grid"> 
 				<div class="w3layouts_news_grid">
-					<img src="images/11.jpg" alt=" " class="img-responsive" />
+					<img src="{% static 'images/Mukesh.jpeg' %}" alt=" " class="img-responsive" />
 					<div class="w3layouts_news_grid_pos">
 						<div class="wthree_text agileinfo_about_text">
-							<ul class="agileits_social_list">
-								<li><a href="#" class="w3_agile_facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-								<li><a href="#" class="agile_twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-								<li><a href="#" class="w3_agile_dribble"><i class="fa fa-dribbble" aria-hidden="true"></i></a></li>
-							</ul>
+
 						</div>
 					</div>
 				</div>
-				<h4>Laura Doe</h4>
-				<p>Farmer</p>
+				<h4>Mukesh</h4>
 			</div>
 			<div class="col-md-3 w3_agileits_team_grid"> 
 				<div class="w3layouts_news_grid">
-					<img src="images/12.jpg" alt=" " class="img-responsive" />
+					<img src="{% static 'images/NiyatiG.jpeg' %}" alt=" " class="img-responsive" />
 					<div class="w3layouts_news_grid_pos">
 						<div class="wthree_text agileinfo_about_text">
-							<ul class="agileits_social_list">
-								<li><a href="#" class="w3_agile_facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-								<li><a href="#" class="agile_twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-								<li><a href="#" class="w3_agile_dribble"><i class="fa fa-dribbble" aria-hidden="true"></i></a></li>
-							</ul>
+
 						</div>
 					</div>
 				</div>
-				<h4>Rosy Paul</h4>
-				<p>Co-Founder</p>
+				<h4>NiyatiG</h4>
 			</div>
 			<div class="col-md-3 w3_agileits_team_grid"> 
 				<div class="w3layouts_news_grid">
-					<img src="images/13.jpg" alt=" " class="img-responsive" />
+					<img src="{% static 'images/OmkarG.JPG' %}" alt=" " class="img-responsive" />
 					<div class="w3layouts_news_grid_pos">
 						<div class="wthree_text agileinfo_about_text">
-							<ul class="agileits_social_list">
-								<li><a href="#" class="w3_agile_facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-								<li><a href="#" class="agile_twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-								<li><a href="#" class="w3_agile_dribble"><i class="fa fa-dribbble" aria-hidden="true"></i></a></li>
-							</ul>
+
 						</div>
 					</div>
 				</div>
-				<h4>Christopher Lii</h4>
-				<p>Senior Staff</p>
+				<h4>OmkarG</h4>
 			</div>
+			<div class="col-md-3 w3_agileits_team_grid"> 
+				<div class="w3layouts_news_grid">
+					<img src="{% static 'images/Ritika.jpeg' %}" alt=" " class="img-responsive" />
+					<div class="w3layouts_news_grid_pos">
+						<div class="wthree_text agileinfo_about_text">
+
+						</div>
+					</div>
+				</div>
+				<h4>Ritika</h4>
+			</div>
+			<div class="col-md-3 w3_agileits_team_grid"> 
+				<div class="w3layouts_news_grid">
+					<img src="{% static 'images/Rudra.jpeg' %}" alt=" " class="img-responsive" />
+					<div class="w3layouts_news_grid_pos">
+						<div class="wthree_text agileinfo_about_text">
+
+						</div>
+					</div>
+				</div>
+				<h4>Rudra</h4>
+			</div>
+			<div class="col-md-3 w3_agileits_team_grid"> 
+				<div class="w3layouts_news_grid">
+					<img src="{% static 'images/Shriya.jpeg' %}" alt=" " class="img-responsive" />
+					<div class="w3layouts_news_grid_pos">
+						<div class="wthree_text agileinfo_about_text">
+
+						</div>
+					</div>
+				</div>
+				<h4>Shriya</h4>
+			</div>
+			<div class="col-md-3 w3_agileits_team_grid"> 
+				<div class="w3layouts_news_grid">
+					<img src="{% static 'images/Uma Maheshwari.jpeg' %}" alt=" " class="img-responsive" />
+					<div class="w3layouts_news_grid_pos">
+						<div class="wthree_text agileinfo_about_text">
+
+						</div>
+					</div>
+				</div>
+				<h4>Uma Maheshwari</h4>
+			</div>
+
 			<div class="clearfix"> </div>
 		</div>
 	</div>
