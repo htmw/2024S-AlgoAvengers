@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<style>
+    .history-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+
+    .history-table th,
+    .history-table td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+
+    .history-table th {
+        background-color: #f2f2f2;
+    }
+
+    .history-table tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+</style>
+
+
+    <h1 style="text-align: center;">Leaf Disease History</h1>
+    {% if user_history %}
+        <table class="history-table">
+            <thead>
+                <tr>
+                    <th>Disease Name</th>
+                    <th>Description</th>
+                    <th>Symptoms</th>
+                    <th>Prevent</th>
+                    <th>Supplement Name</th>
+                    <th>Image</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for entry in user_history %}
+                    <tr>
+                        <td>{{ entry.disease_name }}</td>
+                        <td>{{ entry.description }}</td>
+                        <td>{{ entry.symptoms }}</td>
+                        <td>{{ entry.prevent }}</td>
+                        <td>{{ entry.supplement_name }}</td>
+                        <td>{{ entry.image }}</td>
+                        <td>{{ entry.created_at|date:"F j, Y, g:i a" }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No history available.</p>
+    {% endif %}
+{% endblock %}
