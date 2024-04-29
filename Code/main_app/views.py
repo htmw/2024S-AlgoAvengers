@@ -1,11 +1,43 @@
 from django.shortcuts import render
-
+import random
 from main_app.models import Areas
 from main_app.utils import get_news, predict, weather
 import os
+from django.shortcuts import render, redirect
+from django.contrib.auth import login, authenticate, logout
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth.decorators import login_required
+from .models import LeafDiseaseHistory
+
+def register(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return redirect('/')
+    else:
+        form = UserCreationForm()
+    return render(request, 'signup.html', {'form': form})
+
+def user_login(request):
+    if request.method == 'POST':
+        form = AuthenticationForm(data=request.POST)
+        if form.is_valid():
+            user = form.get_user()
+            login(request, user)
+            return redirect('/')
+    else:
+        form = AuthenticationForm()
+    return render(request, 'login.html', {'form': form})
+
+def user_logout(request):
+    logout(request)
+    return redirect('/')
 
 # Create your views here.
 
+@login_required
 def index(request):
     context = {}
 
@@ -16,7 +48,7 @@ def index(request):
 
 
 
-
+@login_required
 def about(request):
     context = {}
 
@@ -24,7 +56,7 @@ def about(request):
     context['page_title'] = 'About Us'
     return render(request,'about.html', context=context)
 
-
+@login_required
 def area_details(request):
     context = {}
 
@@ -47,7 +79,7 @@ def area_details(request):
 
     return render(request,'area-details.html', context=context)
 
-
+@login_required
 def weather_forecasting(request):
     context = {}
 
@@ -70,7 +102,7 @@ def weather_forecasting(request):
 
     return render(request,'weather-forecasting.html', context=context)
 
-
+@login_required
 def training_model(request):
     context = {}
 
@@ -87,7 +119,10 @@ def training_model(request):
 
         image = files.get("img")
         # print(image.read())
-        image_url = "leaf.jpg"
+        
+        
+        image_url = f"processed/leaf_{random.randint(1111111111,9999999999)}.jpg"
+        path = os.getcwd()+'//'+image_url
 
         with open(image_url,"wb") as f:
             for chunk in image.chunks():
@@ -105,8 +140,27 @@ def training_model(request):
       
             } 
 
-        os.remove(image_url)
+        
+        history_entry = LeafDiseaseHistory.objects.create(
+            user=request.user,
+            image=path,
+            disease_name=title,
+            description=description,
+            symptoms=symptoms,
+            prevent=prevent,
+            supplement_name=supplement_name
+        )
+        
+        
+        #os.remove(image_url)
 
 
 
     return render(request,'test.html', context=context)
+
+
+@login_required
+def history(request):
+    user_history = LeafDiseaseHistory.objects.filter(user=request.user)
+    context = {'user_history': user_history}
+    return render(request, 'history.html', context=context)
