@@ -1,0 +1,189 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="css\bootstrap.css">
+<link rel="stylesheet" href="css\flexslider.css">
+<link rel="stylesheet" href="css\font-awesome.css">
+<link rel="stylesheet" href="css\lsb.css">
+<link rel="stylesheet" href="css\mislider-custom.css">
+<link rel="stylesheet" href="css\mislider.css">
+
+<!-- about -->
+<div class="welcome">
+	<div class="container">
+		<h3 class="agileits_w3layouts_head">Why <span>Choose</span> Us</h3>
+		<div class="w3_agile_image">
+			<img src="{% static 'images/1.png' %}"  alt=" " class="img-responsive" />
+		</div>
+		<div class="w3ls_news_grids"> 
+			<div class="col-md-6 w3_agile_about_grid_left">
+				<h3>"Eco Scan" is a pioneering project leveraging</h3>
+				<p> Convolutional Neural Networks (CNN) and image processing techniques for rapid and accurate plant disease detection. Using high-resolution images of plants, the system employs advanced CNN algorithms to analyze and identify potential diseases swiftly. The project's primary objective is to provide a user-friendly interface for farmers, allowing them to upload crop images and receive real-time analyses, enabling early disease detection and informed decision-making. By integrating state-of-the-art technology into agriculture, Eco Scan aims to optimize crop health monitoring, minimize losses, and promote sustainable farming practices.
+				</p>
+			</div>
+			<div class="col-md-6 w3_agile_about_grid_right">
+				<div class="skillbar" data-percent="78">
+				  <span class="skillbar-title" style="background: #f1703a;">Seeds</span>
+				  <p class="skillbar-bar" style="background: #f88c5e;"></p>
+				  <span class="skill-bar-percent"></span>
+				</div>
+				<!-- End Skill Bar -->
+				
+				<div class="skillbar" data-percent="54">
+				  <span class="skillbar-title" style="background: #2980b9;">Growth</span>
+				  <p class="skillbar-bar" style="background: #3498db;"></p>
+				  <span class="skill-bar-percent"></span>
+				</div>
+				<!-- End Skill Bar -->
+				
+				<div class="skillbar" data-percent="76">
+				  <span class="skillbar-title" style="background: #a0d034;">Economy</span>
+				  <p class="skillbar-bar" style="background: #b2ec2f;"></p>
+				  <span class="skill-bar-percent"></span>
+				</div>
+				<!-- End Skill Bar -->
+				
+				<div class="skillbar" data-percent="80">
+				  <span class="skillbar-title" style="background: #e7cc2c;">Planting</span>
+				  <p class="skillbar-bar" style="background: #f5d410;"></p>
+				  <span class="skill-bar-percent"></span>
+				</div>
+				<!-- End Skill Bar -->
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+	</div>
+</div>
+<!-- //about -->
+<!---728x90--->
+
+<!-- skills -->
+<script src="{% static 'js/skill.bars.jquery.js' %}"></script>
+<script>
+	$(document).ready(function(){
+		
+		$('.skillbar').skillBars({
+			from: 0,
+			speed: 4000, 
+			interval: 100,
+			decimals: 0,
+		});
+		
+	});
+</script>
+<!-- //skills -->
+<!-- about-bottom -->
+<div class="about-bottom">
+	<div class="container">
+		<h3><span>Agriculture</span> not only gives riches to a nation, but the
+			only riches she can call her own</h3>
+
+	</div>
+</div>
+<!-- //about-bottom -->
+<!-- team -->
+<div class="welcome">
+	<div class="container">
+		<h3 class="agileits_w3layouts_head">Meet Our <span>Amazing</span> Team</h3>
+		<div class="w3_agile_image">
+			<img src="{% static 'images/1.png' %}" alt=" " class="img-responsive" />
+		</div>
+				<div class="w3ls_news_grids w3_agileits_team_grids"> 
+			<div class="col-md-3 w3_agileits_team_grid"> 
+				<div class="w3layouts_news_grid">
+					<img src="{% static 'images/Lokesh.jpeg' %}" alt=" " class="img-responsive" />
+					<div class="w3layouts_news_grid_pos">
+						<div class="wthree_text agileinfo_about_text">
+
+						</div>
+					</div>
+				</div>
+				<h4>Lokesh</h4>
+			</div>
+			<div class="col-md-3 w3_agileits_team_grid"> 
+				<div class="w3layouts_news_grid">
+					<img src="{% static 'images/Mukesh.jpeg' %}" alt=" " class="img-responsive" />
+					<div class="w3layouts_news_grid_pos">
+						<div class="wthree_text agileinfo_about_text">
+
+						</div>
+					</div>
+				</div>
+				<h4>Mukesh</h4>
+			</div>
+			<div class="col-md-3 w3_agileits_team_grid"> 
+				<div class="w3layouts_news_grid">
+					<img src="{% static 'images/NiyatiG.jpeg' %}" alt=" " class="img-responsive" />
+					<div class="w3layouts_news_grid_pos">
+						<div class="wthree_text agileinfo_about_text">
+
+						</div>
+					</div>
+				</div>
+				<h4>NiyatiG</h4>
+			</div>
+			<div class="col-md-3 w3_agileits_team_grid"> 
+				<div class="w3layouts_news_grid">
+					<img src="{% static 'images/OmkarG.JPG' %}" alt=" " class="img-responsive" />
+					<div class="w3layouts_news_grid_pos">
+						<div class="wthree_text agileinfo_about_text">
+
+						</div>
+					</div>
+				</div>
+				<h4>OmkarG</h4>
+			</div>
+			<div class="col-md-3 w3_agileits_team_grid"> 
+				<div class="w3layouts_news_grid">
+					<img src="{% static 'images/Ritika.jpeg' %}" alt=" " class="img-responsive" />
+					<div class="w3layouts_news_grid_pos">
+						<div class="wthree_text agileinfo_about_text">
+
+						</div>
+					</div>
+				</div>
+				<h4>Ritika</h4>
+			</div>
+			<div class="col-md-3 w3_agileits_team_grid"> 
+				<div class="w3layouts_news_grid">
+					<img src="{% static 'images/Rudra.jpeg' %}" alt=" " class="img-responsive" />
+					<div class="w3layouts_news_grid_pos">
+						<div class="wthree_text agileinfo_about_text">
+
+						</div>
+					</div>
+				</div>
+				<h4>Rudra</h4>
+			</div>
+			<div class="col-md-3 w3_agileits_team_grid"> 
+				<div class="w3layouts_news_grid">
+					<img src="{% static 'images/Shriya.jpeg' %}" alt=" " class="img-responsive" />
+					<div class="w3layouts_news_grid_pos">
+						<div class="wthree_text agileinfo_about_text">
+
+						</div>
+					</div>
+				</div>
+				<h4>Shriya</h4>
+			</div>
+			<div class="col-md-3 w3_agileits_team_grid"> 
+				<div class="w3layouts_news_grid">
+					<img src="{% static 'images/Uma Maheshwari.jpeg' %}" alt=" " class="img-responsive" />
+					<div class="w3layouts_news_grid_pos">
+						<div class="wthree_text agileinfo_about_text">
+
+						</div>
+					</div>
+				</div>
+				<h4>Uma Maheshwari</h4>
+			</div>
+
+			<div class="clearfix"> </div>
+		</div>
+	</div>
+</div>
+<!-- //team -->
+{% endblock %}
